@@ -1,0 +1,219 @@
+<app-navigation [ContentType]="1">
+  <br><br><br>
+  <mat-card-title style="font-size: 25px;margin:40px">Enter the Details to Create Your Resume</mat-card-title>
+
+  <div style="margin:50px">
+    <!-- Value: {{ resume.value | json }}
+    Value: {{ resume.touched | json }}
+    Value: {{ resume.invalid | json }} -->
+
+    <div [formGroup]="resume">
+      <div>
+        <h4>Basic Details</h4>
+        <div formGroupName="name">
+          <!-- <h4>Name</h4> -->
+          <mat-form-field appearance="outline">
+            <mat-label>First Name</mat-label>
+            <input type="text" formControlName="firstName" matInput placeholder="Enter Your First Name" />
+          </mat-form-field>
+          <mat-form-field appearance="outline">
+            <mat-label>Last Name</mat-label>
+            <input type="text" formControlName="lastName" matInput placeholder="Enter Your Last Name" />
+          </mat-form-field>
+        </div>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Age</mat-label>
+          <input type="text" formControlName="age" matInput placeholder="Enter Your Age" />
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Sex</mat-label>
+          <mat-select formControlName="sex">
+            <mat-option value="Male">
+              Male
+            </mat-option>
+            <mat-option value="Female">
+              Female
+            </mat-option>
+            <mat-option value="Other">
+              Other
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Date Of Birth</mat-label>
+          <input matInput formControlName="dob" [matDatepicker]="picker" />
+          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+
+        <div>
+          <h4>Contact Details</h4>
+          <mat-form-field appearance="outline">
+            <mat-label>Contact Number</mat-label>
+            <input type="text" formControlName="phno" matInput placeholder="Enter Your Phone number" />
+
+            <mat-icon matSuffix>phone</mat-icon>
+          </mat-form-field>
+          <mat-form-field appearance="outline">
+            <input matInput placeholder="Enter your email" formControlName="email" />
+            <!-- <mat-error *ngIf="resume.value.email.invalid">{{getErrorMessage()}}</mat-error> -->
+
+            <!-- <mat-error *ngIf="email?.invalid && email?.touched"> Your email does not look right</mat-error> -->
+            <!-- <mat-error>{{resume.value.email.hasError('email')}}</mat-error> -->
+            <!-- <mat-error *ngIf="resume.value.email.touched && resume.value.email.hasError('resume.value.email')">Invalid</mat-error> -->
+          </mat-form-field>
+        </div>
+
+        <div formGroupName="address">
+          <h4>Address</h4>
+
+          <mat-form-field appearance="outline">
+            <mat-label>Street</mat-label>
+            <input type="text" formControlName="street" matInput placeholder="Street Name" />
+          </mat-form-field>
+          <mat-form-field appearance="outline">
+            <mat-label>City</mat-label>
+            <input type="text" formControlName="city" matInput placeholder="City" />
+          </mat-form-field>
+          <mat-form-field appearance="outline">
+            <mat-label>State</mat-label>
+            <input type="text" formControlName="state" matInput placeholder="State " />
+          </mat-form-field>
+          <mat-form-field appearance="outline">
+            <mat-label>Zip Code</mat-label>
+            <input type="text" formControlName="zip" matInput placeholder="Zip Code" />
+          </mat-form-field>
+        </div>
+      </div>
+      <div>
+        <h4>Skills</h4>
+        <mat-form-field appearance="outline" style="width: 85%">
+          <mat-chip-list #chipList aria-label="Skill selection">
+            <mat-chip *ngFor="let skill of skills" [selectable]="selectable" [removable]="removable"
+              (removed)="remove(skill)">
+              {{ skill.skillName }}
+              <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+            </mat-chip>
+            <input formControlName="skills" placeholder="Enter your Skills" [matChipInputFor]="chipList"
+              [matChipInputSeparatorKeyCodes]="separatorKeysCodes" [matChipInputAddOnBlur]="addOnBlur"
+              (matChipInputTokenEnd)="add($event)" />
+          </mat-chip-list>
+        </mat-form-field>
+      </div>
+
+      <div formArrayName="education" class="edu">
+        <h4>Education Qualifications</h4>
+        <div *ngFor="
+        let education of educationForm.controls; let i = index" [formGroupName]="i">
+
+          <mat-form-field appearance="outline">
+            <mat-label>College Name</mat-label>
+            <input formControlName="collegeName" matInput placeholder="College Name" />
+          </mat-form-field>
+          <mat-form-field appearance="outline">
+            <mat-label>Degree</mat-label>
+            <input formControlName="degree" matInput placeholder="Degree Name" />
+          </mat-form-field>
+          <mat-form-field appearance="outline">
+            <mat-label>Year of Pass Out</mat-label>
+            <input formControlName="year" matInput placeholder="Passed out Year " />
+          </mat-form-field>
+          <button class = "btnAdd" *ngIf="i > 0" (click)="deleteEducation(i)" style="margin: 10px" mat-fab color="primary">
+            <mat-icon>close</mat-icon>
+          </button>
+          <button class = "btnAdd" *ngIf="educationForm.controls.length === i + 1" (click)="addEducation()" style="margin: 10px" mat-fab
+            color="primary">
+            <mat-icon>add</mat-icon>
+          </button>
+        </div>
+      </div>
+
+      <div formArrayName="certification" class="cert">
+        <h4>Certification Details</h4>
+
+        <div *ngFor="
+            let certification of certificationForm.controls;
+            let i = index
+          " [formGroupName]="i">
+          <mat-form-field appearance="outline">
+            <mat-label>Institute Name</mat-label>
+            <input formControlName="instName" matInput placeholder="Institute Name" />
+          </mat-form-field>
+          <mat-form-field appearance="outline">
+            <mat-label>Course</mat-label>
+            <input formControlName="course" matInput placeholder="Course Name" />
+          </mat-form-field>
+          <mat-form-field appearance="outline">
+            <mat-label>Year of Pass Out</mat-label>
+            <input formControlName="year" matInput placeholder="Acquired Year " />
+          </mat-form-field>
+          <button class = "btnAdd" *ngIf="i > 0" (click)="deleteCertification(i)" style="margin: 10px" mat-fab color="primary">
+            <mat-icon>close</mat-icon>
+          </button>
+          <button class = "btnAdd" *ngIf="certificationForm.controls.length === i + 1" (click)="addCertification()" style="margin: 10px"
+            mat-fab color="primary">
+            <mat-icon>add</mat-icon>
+          </button>
+        </div>
+      </div>
+
+      <div formArrayName="experience" class="cert">
+        <h4>Experience Details</h4>
+
+        <div *ngFor="let experience of experienceForm.controls; let i = index" [formGroupName]="i">
+          <mat-form-field appearance="outline">
+            <mat-label>Company Name</mat-label>
+            <input formControlName="companyName" matInput placeholder="Company Name" />
+          </mat-form-field>
+          <mat-form-field appearance="outline">
+            <mat-label>Designation</mat-label>
+            <input formControlName="post" matInput placeholder="Designation" />
+          </mat-form-field>
+          <mat-form-field appearance="outline">
+            <mat-label>Years of Experience</mat-label>
+            <input formControlName="year" matInput placeholder="Number of Years " />
+          </mat-form-field>
+          <button class = "btnAdd" *ngIf="i > 0" (click)="deleteExperience(i)" style="margin: 10px" mat-fab color="primary">
+            <mat-icon>close</mat-icon>
+          </button>
+          <button class = "btnAdd" *ngIf="experienceForm.controls.length === i + 1" (click)="addExperience()" style="margin: 10px"
+            mat-fab color="primary">
+            <mat-icon>add</mat-icon>
+          </button>
+        </div>
+      </div>
+
+      <div formArrayName="projects" class="cert">
+        <h4>Project Details</h4>
+
+        <div *ngFor="let project of projectForm.controls; let i = index" [formGroupName]="i">
+          <mat-form-field appearance="outline">
+            <mat-label>Project Name</mat-label>
+            <input formControlName="projectName" matInput placeholder="Project Name" />
+          </mat-form-field>
+          <mat-form-field appearance="outline">
+            <mat-label>Domain of Work</mat-label>
+            <input formControlName="area" matInput placeholder="Domain of Work" />
+          </mat-form-field>
+          <mat-form-field appearance="outline">
+            <mat-label>Description</mat-label>
+            <input formControlName="description" matInput placeholder="About the project" />
+          </mat-form-field>
+          <button class = "btnAdd" *ngIf="i > 0" (click)="deleteProject(i)" style="margin: 10px" mat-fab color="primary">
+            <mat-icon>close</mat-icon>
+          </button>
+          <button class = "btnAdd" *ngIf="projectForm.controls.length === i + 1" (click)="addProject()" style="margin: 10px" mat-fab
+            color="primary">
+            <mat-icon>add</mat-icon>
+          </button>
+        </div>
+      </div>
+    </div>
+    <button (click)="submitResume()" [disabled]="!resume.valid" class="submit searchBtn" color="primary" mat-raised-button>
+      Create Resume
+    </button>
+  </div>
+</app-navigation>

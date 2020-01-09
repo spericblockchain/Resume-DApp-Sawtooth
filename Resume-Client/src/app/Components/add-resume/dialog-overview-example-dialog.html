@@ -1,0 +1,14 @@
+<h1 mat-dialog-title>Hi {{data.name}}</h1>
+<div mat-dialog-content>
+  Kindly note down the Public Key : 
+  {{data.pub}}
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="onNoClick()">Copy</button>
+  <button mat-button [mat-dialog-close]="data.animal" cdkFocusInitial>Ok</button>
+</div>
+
+
+<!-- Copyright 2019 Google LLC. All Rights Reserved.
+    Use of this source code is governed by an MIT-style license that
+    can be found in the LICENSE file at http://angular.io/license -->

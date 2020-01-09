@@ -1,0 +1,147 @@
+<app-navigation [ContentType] = "1">
+  <mat-accordion>
+    <h2 style="margin-left: 26%;">Resume</h2>
+    <mat-expansion-panel
+      (opened)="panelOpenBasic = false"
+      (closed)="panelOpenBasic = true"
+    >
+      <mat-expansion-panel-header>
+        <mat-panel-title *ngIf="panelOpenBasic">
+          Basic Details
+        </mat-panel-title>
+        <mat-panel-description *ngIf="!panelOpenBasic">
+          {{ data.name.firstName.toUpperCase() }}
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+      <p>First Name : {{ data.name.firstName }}</p>
+      <p>Last Name : {{ data.name.lastName }}</p>
+      <p>Age : {{ data.age }}</p>
+      <p>Sex : {{ data.sex }}</p>
+      <p>Date of Birth : {{ data.dob }}</p>
+    </mat-expansion-panel>
+    <mat-expansion-panel
+      (opened)="panelOpenBasic = false"
+      (closed)="panelOpenBasic = true"
+    >
+      <mat-expansion-panel-header>
+        <mat-panel-title *ngIf="panelOpenBasic">
+          Contact Details
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+      <p>Phone Number : {{ data.phno }}</p>
+      <p>Email : {{ data.email }}</p>
+      <mat-expansion-panel>
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            Address
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+        <p>Street Name : {{ data.address.street }}</p>
+        <p>City Name : {{ data.address.city }}</p>
+        <p>State : {{ data.address.state }}</p>
+        <p>Zip Code : {{ data.address.zip }}</p>
+      </mat-expansion-panel></mat-expansion-panel
+    >
+    <mat-expansion-panel
+      (opened)="panelOpenSKill = true"
+      (closed)="panelOpenSKill = false"
+    >
+      <mat-expansion-panel-header>
+        <mat-panel-title *ngIf="!panelOpenSKill">
+          Skills
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+      <div *ngFor="let skill of data.skills" class="skill">
+        <p>{{ skill.skillName }}</p>
+      </div>
+    </mat-expansion-panel>
+    <mat-expansion-panel
+      (opened)="panelOpenEdu = true"
+      (closed)="panelOpenEdu = false"
+    >
+      <mat-expansion-panel-header>
+        <mat-panel-title *ngIf="!panelOpenEdu">
+          Education
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+      <table>
+        <tr>
+          <th>College Name</th>
+          <th>Degree</th>
+          <th>Year Of Passout</th>
+        </tr>
+        <tr *ngFor="let edu of data.education">
+          <td>{{ edu.collegeName }}</td>
+          <td>{{ edu.degree }}</td>
+          <td>{{ edu.year }}</td>
+        </tr>
+      </table>
+    </mat-expansion-panel>
+    <mat-expansion-panel
+      (opened)="panelOpenCert = true"
+      (closed)="panelOpenCert = false"
+    >
+      <mat-expansion-panel-header>
+        <mat-panel-title *ngIf="!panelOpenCert">
+          Certification
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+      <table>
+        <tr>
+          <th>Institute Name</th>
+          <th>Course</th>
+          <th>Acquired Year</th>
+        </tr>
+        <tr *ngFor="let cert of data.certification">
+          <td>{{ cert.instName }}</td>
+          <td>{{ cert.course }}</td>
+          <td>{{ cert.year }}</td>
+        </tr>
+      </table>
+    </mat-expansion-panel>
+    <mat-expansion-panel
+      (opened)="panelOpenExp = true"
+      (closed)="panelOpenExp = false"
+    >
+      <mat-expansion-panel-header>
+        <mat-panel-title *ngIf="!panelOpenExp">
+          Experience
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+      <table>
+        <tr>
+          <th>Company Name</th>
+          <th>Position</th>
+          <th>Year Of Experience</th>
+        </tr>
+        <tr *ngFor="let exp of data.experience">
+          <td>{{ exp.companyName }}</td>
+          <td>{{ exp.post }}</td>
+          <td>{{ exp.year }}</td>
+        </tr>
+      </table>
+    </mat-expansion-panel>
+    <mat-expansion-panel
+      (opened)="panelOpenPro = true"
+      (closed)="panelOpenPro = false"
+    >
+      <mat-expansion-panel-header>
+        <mat-panel-title *ngIf="!panelOpenPro">
+          Projects
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+      <table>
+        <tr>
+          <th>Project Name</th>
+          <th>Area Worked On</th>
+          <th>Short Description</th>
+        </tr>
+        <tr *ngFor="let pro of data.projects">
+          <td>{{ pro.projectName }}</td>
+          <td>{{ pro.area }}</td>
+          <td>{{ pro.description }}</td>
+        </tr>
+      </table>
+    </mat-expansion-panel>
+  </mat-accordion>
+</app-navigation>
