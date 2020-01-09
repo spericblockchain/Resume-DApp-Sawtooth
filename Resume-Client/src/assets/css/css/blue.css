@@ -53,7 +53,7 @@ blockquote, q {
 body {
 	font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
 	background-color: #e1e0db;
-	background-image: url('../../../assets/images/bg.jpg');
+	background-image: url(../images/bg.jpg);
 	background-repeat: repeat;
 	font-size:13px;
 	line-height: 17px;
@@ -304,7 +304,7 @@ ul.unordered li {
 	float:left;
 	display: block;
 	width:500px;
-	background-image:url('../../../assets/images/bullet.gif');
+	background-image:url(../images/bullet.gif);
 	background-repeat: no-repeat;
 	padding-left:10px;
 	background-position: 0 .5em;
@@ -324,7 +324,7 @@ ul.info li {
 	float:left;
 	display: block;
 	width:500px;
-	background-image:url('../../../assets/images/bullet.gif');
+	background-image:url(../images/bullet.gif);
 	background-repeat: no-repeat;
 	padding-left:10px;
 	background-position: 0 .5em;
@@ -347,7 +347,7 @@ ul.skills li {
 	padding:0;
 	float:left;
 	width:156px;
-	background-image:url('../../../assets/images/bullet.gif');
+	background-image:url(../images/bullet.gif);
 	background-repeat: no-repeat;
 	padding-left:10px;
 	background-position: 0 .5em;
@@ -385,7 +385,7 @@ ul.works li img:hover {
 }
 
 img.portrait {
-	background-image:url('../../../assets/images/frame.jpg');
+	background-image:url(../images/frame.jpg);
 	background-repeat: no-repeat;
 	width:109px;
 	height:109px;
@@ -417,19 +417,19 @@ img.portrait {
 }
 
 .self ul li.ad {
-	background-image:url('../../../assets/images/icn-ad.gif');
+	background-image:url(../images/icn-ad.gif);
 }
 
 .self ul li.mail {
-	background-image:url('../../../assets/images/icn-mail.gif');
+	background-image:url(../images/icn-mail.gif);
 }
 
 .self ul li.tel {
-	background-image:url('../../../assets/images/icn-tel.gif');
+	background-image:url(../images/icn-tel.gif);
 }
 
 .self ul li.web {
-	background-image:url('../../../assets/images/icn-web.gif');
+	background-image:url(../images/icn-web.gif);
 }
 
 .self ul li {
@@ -466,7 +466,7 @@ img.portrait {
 /* TIPSY */
 /* ----------------------------------------- */
 
-.tipsy { padding: 5px; font-size: 10px; background-repeat: no-repeat;  background-image: url('../../../assets/images/tipsy.gif'); }
+.tipsy { padding: 5px; font-size: 10px; background-repeat: no-repeat;  background-image: url(../images/tipsy.gif); }
 .tipsy-inner { padding: 5px 8px 4px 8px; background-color: #080626; color: #fff; max-width: 200px; text-align: center; }
 .tipsy-inner { -moz-border-radius:3px; -webkit-border-radius:3px; }
 .tipsy-north { background-position: top center; }
@@ -491,14 +491,14 @@ img.portrait {
 #cboxOverlay{background:#666;}
 
 #colorBox{}
-#cboxTopLeft{width:25px; height:25px; background:url('../../../assets/images/border1.png') 0 0 no-repeat;}
-#cboxTopCenter{height:25px; background:url('../../../assets/images/border1.png') 0 -50px repeat-x;}
-#cboxTopRight{width:25px; height:25px; background:url('../../../assets/images/border1.png') -25px 0 no-repeat;}
-#cboxBottomLeft{width:25px; height:25px; background:url('../../../assets/images/border1.png') 0 -25px no-repeat;}
-#cboxBottomCenter{height:25px; background:url('../../../assets/images/border1.png') 0 -75px repeat-x;}
-#cboxBottomRight{width:25px; height:25px; background:url('../../../assets/images/border1.png') -25px -25px no-repeat;}
-#cboxMiddleLeft{width:25px; background:url('../../../assets/images/border2.png') 0 0 repeat-y;}
-#cboxMiddleRight{width:25px; background:url('../../../assets/images/border2.png') -25px 0 repeat-y;}
+#cboxTopLeft{width:25px; height:25px; background:url(../images/border1.png) 0 0 no-repeat;}
+#cboxTopCenter{height:25px; background:url(../images/border1.png) 0 -50px repeat-x;}
+#cboxTopRight{width:25px; height:25px; background:url(../images/border1.png) -25px 0 no-repeat;}
+#cboxBottomLeft{width:25px; height:25px; background:url(../images/border1.png) 0 -25px no-repeat;}
+#cboxBottomCenter{height:25px; background:url(../images/border1.png) 0 -75px repeat-x;}
+#cboxBottomRight{width:25px; height:25px; background:url(../images/border1.png) -25px -25px no-repeat;}
+#cboxMiddleLeft{width:25px; background:url(../images/border2.png) 0 0 repeat-y;}
+#cboxMiddleRight{width:25px; background:url(../images/border2.png) -25px 0 repeat-y;}
 #cboxContent{background:#fff;}
 #cboxLoadedContent{margin-bottom:20px;}
 #cboxTitle{position:absolute; bottom:0px; left:0; text-align:center; width:100%; color:#1b4491;}
@@ -506,7 +506,7 @@ img.portrait {
 #cboxSlideshow{position:absolute; bottom:0px; right:42px; color:#444;}
 #cboxPrevious{position:absolute; bottom:0px; left:0; color:#444;}
 #cboxNext{position:absolute; bottom:0px; left:63px; color:#444;}
-#cboxLoadingOverlay{background:url('../../../assets/images/loading.gif') 5px 5px no-repeat #fff;}
+#cboxLoadingOverlay{background:url(../images/loading.gif) 5px 5px no-repeat #fff;}
 #cboxClose{position:absolute; bottom:0; right:0; display:block; color:#444;}
 
 
@@ -702,7 +702,7 @@ textarea:focus {
 }
 
 .submit-button {
-	background: transparent url('../../../assets/images/submit.jpg') no-repeat 0 0;
+	background: transparent url(../images/submit.jpg) no-repeat 0 0;
 	display: block;
 	clear: both;
 	width:90px;
@@ -717,7 +717,7 @@ textarea:focus {
 }
 
 .submit-button:hover {
-	background: transparent url('../../../assets/images/submit.jpg') no-repeat 0 -33px;
+	background: transparent url(../images/submit.jpg) no-repeat 0 -33px;
 	outline: 0;
 	border: none;
 }

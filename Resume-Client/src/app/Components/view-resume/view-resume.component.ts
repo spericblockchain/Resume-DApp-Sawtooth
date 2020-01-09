@@ -23,9 +23,7 @@ export class ViewResumeComponent implements OnInit {
   loadData = async () => {
     try {
       this.data = JSON.parse( sessionStorage.getItem( 'data' ) )[ 0 ];
-      console.log( 'Log: ViewResumeComponent -> loadData -> this.data', this.data )
     } catch ( error ) {
-      console.log( 'Log: ViewComponent -> loadData -> error', error );
     }
   }
 

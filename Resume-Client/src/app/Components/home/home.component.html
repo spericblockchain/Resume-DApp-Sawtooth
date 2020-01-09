@@ -1,68 +1,37 @@
-<!-- <app-navigation [ContentType]="0">
-  <div class="bg">
-    <br />
-    <div style="margin-top: 10%;" class="example-button-row">
-      <button
-        style="display: block; text-align: center; margin: auto; width: 200px"
-        mat-raised-button
-        color="accent"
-        routerLink="/AddResume"
-      >
-        Add Resume</button
-      ><br /><br />
-    
-      <button
-        style="display: block; text-align: center; margin: auto; width: 200px"
-        mat-raised-button
-        color="accent"
-        (click)="openDialog()"
-      >
-        View Resume</button
-      ><br /><br />
-    </div>
-  </div>
-
-</app-navigation>
- -->
-
 <app-navigation [ContentType]="0">
   <div class="startSection">
     <div class="flex-container">
       <mat-grid-list class="home" cols="2" rowHeight="2:2">
-      <div>
-        <mat-grid-tile class="contentPart">
-          <h3>Resume Generator</h3>
-          
-        </mat-grid-tile>
-      </div>
-
-      <div>
-        
-        <mat-grid-tile>
-          
-          <div>
-            <table class="fullwidth" cellspacing="25">
-              <tr>
-                <td>
-                  <button class="searchBtn" color="primary" value="submit" mat-raised-button routerLink="/AddResume">
-                    Add Resume
-                  </button>
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  <p>
-                    <button class="searchBtn" color="primary" value="submit" mat-raised-button (click)="openDialog()">
-                      Search Resume
-                    </button>
-                  </p>
-                </td>
-              </tr>
-            </table>
+        <div>
+          <mat-grid-tile class="contentPart">
+            <h3>Resume Generator</h3>
+          </mat-grid-tile>
         </div>
-        </mat-grid-tile>
-      </div>
-    </mat-grid-list>
+        <div>
+          <mat-grid-tile>
+            <div>
+              <table class="fullwidth" cellspacing="25">
+                <tr>
+                  <td>
+                    <button class="searchBtn" color="primary" value="submit" mat-raised-button routerLink="/AddResume">
+                      Add Resume
+                    </button>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <p>
+                      <button class="searchBtn" color="primary" value="submit" mat-raised-button (click)="openDialog()">
+                        Search Resume
+                      </button>
+                    </p>
+                  </td>
+                </tr>
+              </table>
+            </div>
+          </mat-grid-tile>
+        </div>
+      </mat-grid-list>
     </div>
-</div>
+  </div>
 </app-navigation>

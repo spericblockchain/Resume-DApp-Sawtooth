@@ -29,13 +29,9 @@ export class HomeComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe( async result => {
       try {
-        console.log( 'The dialog was closed' );
         this.publicKey = result;
-        console.log( 'Log: HomeComponent -> constructor -> this.publicKey', this.publicKey )
         const addr = this.sawtooth.genAddress( this.publicKey );
-        console.log( 'Log: HomeComponent -> addr', addr )
         const data = await this.api.getStateData( addr );
-        console.log( 'Log: HomeComponent -> data', data.error );
         if ( data && data.error === undefined ) {
           sessionStorage.setItem( "data", data )
           this.route.navigateByUrl( '/ViewResume' )
@@ -44,7 +40,6 @@ export class HomeComponent implements OnInit {
           alert( "Invalid Public Key" );
         }
       } catch ( error ) {
-        console.log( 'Log: HomeComponent -> error', error )
         alert( "Invalid Public Key" )
       }
 
@@ -53,11 +48,6 @@ export class HomeComponent implements OnInit {
 
   ngOnInit() {
   }
-  //   ViewResume() {
-  //     console.log( 'pressed' );
-  //     this.route.navigateByUrl( '/ViewResume' )
-  //   }
-  // }
 }
 
 @Component( {

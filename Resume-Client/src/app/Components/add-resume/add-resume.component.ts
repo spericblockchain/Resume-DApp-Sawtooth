@@ -7,9 +7,7 @@ import { COMMA, ENTER } from '@angular/cdk/keycodes';
 import { Secp256k1PrivateKey, Secp256k1Context } from 'sawtooth-sdk/signing/secp256k1';
 import { createContext, CryptoFactory } from 'sawtooth-sdk/signing';
 import { interval, Subscription } from 'rxjs';
-
-
-
+import { Router } from '@angular/router';
 
 export interface Skills {
   skillName: string;
@@ -58,35 +56,18 @@ export class AddResumeComponent {
   addOnBlur = true;
   pub: any;
   readonly separatorKeysCodes: number[] = [ ENTER, COMMA ];
-
-  openDialog(): void {
-    console.log("TCL: AddResumeComponent -> this.pub", this.pub)
-    console.log("TCL: AddResumeComponent -> this.resume.get('name')", this.resume.get('name').value.firstName)
-    const dialogRef = this.dialog.open(DialogOverviewExampleDialo, {
-      width: '460px',
-      data: {pub: this.pub, name: this.resume.get('name').value.firstName}
-    });
-
-    dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
-    });
-  }
-
   add( event: MatChipInputEvent ): void {
     const input = event.input;
     const value = event.value;
     if ( ( value || '' ).trim() ) {
       this.skills.push( { skillName: value.trim() } );
-      console.log( 'TCL: AddResumeComponent -> constructor -> this.skills', this.skills );
 
     }
-
     // Reset the input value
     if ( input ) {
       input.value = '';
     }
   }
-
   remove( skill: any ): void {
     const index = this.skills.indexOf( skill );
 
@@ -95,8 +76,16 @@ export class AddResumeComponent {
     }
   }
 
-  // ################ ########### #######################
+  // ####################################################
 
+  openDialog(): void {
+    const dialogRef = this.dialog.open(DialogOverviewExampleDialo, {
+      width: '460px',
+      data: {pub: this.pub, name: this.resume.get('name').value}
+    });
+    dialogRef.afterClosed().subscribe(result => {
+    });
+  }
 
   get educationForm(): FormArray {
     return this.resume.get( 'education' ) as FormArray;
@@ -160,21 +149,14 @@ export class AddResumeComponent {
   ngOnInit() {
 
     this.resume = this.fb.group( {
-      name: this.fb.group( {
-        firstName: [ '', Validators.required ],
-        lastName: [ '', Validators.required ],
-      } ),
+      name: [ '', Validators.required ],
       age: [ '', Validators.required ],
       sex: [ '', Validators.required ],
       dob: [ '', Validators.required ],
       phno: [ '', [ Validators.required, Validators.pattern( '^[0-9]{10}$' ) ] ],
       email: [ '', [ Validators.required, Validators.email ] ],
-      address: this.fb.group( {
-        street: [ '', Validators.required ],
-        city: [ '', Validators.required ],
-        state: [ '', Validators.required ],
-        zip: [ '', Validators.required ],
-      } ),
+      address: [ '', Validators.required ],
+      objective: [ '', Validators.required ],
       skills: '',
       education: this.fb.array( [ new FormGroup( {
         collegeName: new FormControl(),
@@ -198,38 +180,24 @@ export class AddResumeComponent {
       } ) ] )
     } );
   }
-  // getErrorMessage = () => {
-  //   console.log("TCL: AddResumeComponent -> getErrorMessage -> this.resume", this.resume)
-  //   return this.resume.get('email').hasError('required') ? 'You must enter a value' :
-  //   this.resume.get('email').hasError('email') ? 'Not a valid email' :
-  //           '';
-  //   // return 123;
-  // }
   submitResume = async () => {
     const data: any = this.resume.value;
     data.skills = this.skills;
-    console.log( 'Log: AddResumeComponent -> submitResume -> data', data )
+    data.dob = this.resume.value.dob.toLocaleDateString('en-US');
     const context = createContext( 'secp256k1' );
     const privateKey = context.newRandomPrivateKey();
     const signer = ( new CryptoFactory( context ) ).newSigner( privateKey );
     const Key = privateKey.asHex();
     const publicKey = signer.getPublicKey().asHex();
-    console.log( 'Log: UserComponent -> submitResume -> data', data );
     const res: any = await this.sawtooth.newTransaction( Key, publicKey, data, 1 );
-    console.log( 'TCL: AddResumeComponent -> submitResume -> res', res );
     if ( res[ 0 ].statusText === 'Accepted' ) {
       const id = res[ 1 ].transactionIds[ 0 ];
-      console.log( 'TCL: AddResumeComponent -> submitResume -> id', id );
       const data = await this.CheckReceipt( id );
-      // alert( 'Your Transaction is done' + '\n' + 'Kindly Note down Your Keys Generated in the Next Pop Up' )
       this.pub = publicKey
-      console.log("TCL: AddResumeComponent -> submitResume -> this.pub", this.pub)
       this.openDialog();
-      // alert( 'Your PRIVATE KEY is ' + privateKey + '\n' + 'Your PUBLIC KEY is ' + publicKey );
     } else {
       alert( 'Some issues with sawtooth' );
     }
-
   }
   CheckReceipt = async id => {
     return new Promise( async ( resolve, reject ) => {

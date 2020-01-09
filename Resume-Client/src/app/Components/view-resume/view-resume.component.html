@@ -1,147 +1,122 @@
-<app-navigation [ContentType] = "1">
-  <mat-accordion>
-    <h2 style="margin-left: 26%;">Resume</h2>
-    <mat-expansion-panel
-      (opened)="panelOpenBasic = false"
-      (closed)="panelOpenBasic = true"
-    >
-      <mat-expansion-panel-header>
-        <mat-panel-title *ngIf="panelOpenBasic">
-          Basic Details
-        </mat-panel-title>
-        <mat-panel-description *ngIf="!panelOpenBasic">
-          {{ data.name.firstName.toUpperCase() }}
-        </mat-panel-description>
-      </mat-expansion-panel-header>
-      <p>First Name : {{ data.name.firstName }}</p>
-      <p>Last Name : {{ data.name.lastName }}</p>
-      <p>Age : {{ data.age }}</p>
-      <p>Sex : {{ data.sex }}</p>
-      <p>Date of Birth : {{ data.dob }}</p>
-    </mat-expansion-panel>
-    <mat-expansion-panel
-      (opened)="panelOpenBasic = false"
-      (closed)="panelOpenBasic = true"
-    >
-      <mat-expansion-panel-header>
-        <mat-panel-title *ngIf="panelOpenBasic">
-          Contact Details
-        </mat-panel-title>
-      </mat-expansion-panel-header>
-      <p>Phone Number : {{ data.phno }}</p>
-      <p>Email : {{ data.email }}</p>
-      <mat-expansion-panel>
-        <mat-expansion-panel-header>
-          <mat-panel-title>
-            Address
-          </mat-panel-title>
-        </mat-expansion-panel-header>
-        <p>Street Name : {{ data.address.street }}</p>
-        <p>City Name : {{ data.address.city }}</p>
-        <p>State : {{ data.address.state }}</p>
-        <p>Zip Code : {{ data.address.zip }}</p>
-      </mat-expansion-panel></mat-expansion-panel
-    >
-    <mat-expansion-panel
-      (opened)="panelOpenSKill = true"
-      (closed)="panelOpenSKill = false"
-    >
-      <mat-expansion-panel-header>
-        <mat-panel-title *ngIf="!panelOpenSKill">
-          Skills
-        </mat-panel-title>
-      </mat-expansion-panel-header>
-      <div *ngFor="let skill of data.skills" class="skill">
-        <p>{{ skill.skillName }}</p>
+<!-- Begin Wrapper -->
+<div id="wrapper">
+  <!-- <div class="wrapper-top"></div> -->
+  <div class="wrapper-mid">
+    <!-- Begin Paper -->
+    <div id="paper">
+      <!-- <div class="paper-top"></div> -->
+      <div id="paper-mid">
+        <div class="entry">
+          <!-- Begin Personal Information -->
+          <div class="self">
+            <h1 class="name">{{ data.name }}<br /></h1>
+            <ul>
+              <li class="ad">{{data.address}}</li>
+              <li class="mail">{{ data.email }}</li>
+              <li class="tel">{{ data.phno }}</li>
+            </ul>
+          </div>
+          <!-- End Personal Information -->
+        </div>
+        <!-- Begin 1st Row -->
+        <div class="entry">
+          <h2>OBJECTIVE</h2>
+          <p>{{data.objective}}</p>
+        </div>
+        <!-- End 1st Row -->
+        <!-- Begin 2nd Row -->
+        <div class="entry">
+          <h2>BASIC DETAILS</h2><br>
+          <p>Age : {{ data.age }}</p>
+          <p>Sex : {{ data.sex }}</p>
+          <p>Date of Birth : {{ data.dob }}</p>
+        </div>
+
+        <!-- End 2nd Row -->
+        <!-- Begin 3rd Row -->
+        <div class="entry">
+          <h2>EDUCATION</h2>
+          <table>
+            <tr>
+              <th>College Name</th>
+              <th>Degree</th>
+              <th>Year Of Passout</th>
+            </tr>
+            <tr *ngFor="let edu of data.education">
+              <td>{{ edu.collegeName }}</td>
+              <td>{{ edu.degree }}</td>
+              <td>{{ edu.year }}</td>
+            </tr>
+          </table>
+        </div>
+        <!-- End 3rd Row -->
+        <!-- Begin 4th Row -->
+        <div class="entry">
+          <h2>CERTIFICATION</h2>
+          <table>
+            <tr>
+              <th>Institute Name</th>
+              <th>Course</th>
+              <th>Acquired Year</th>
+            </tr>
+            <tr *ngFor="let cert of data.certification">
+              <td>{{ cert.instName }}</td>
+              <td>{{ cert.course }}</td>
+              <td>{{ cert.year }}</td>
+            </tr>
+          </table>
+        </div>
+        <!-- End 4th Row -->
+        <!-- Begin 5th Row -->
+        <div class="entry">
+          <h2>EXPERIENCE</h2>
+          <table>
+            <tr>
+              <th>Company Name</th>
+              <th>Position</th>
+              <th>Year Of Experience</th>
+            </tr>
+            <tr *ngFor="let exp of data.experience">
+              <td>{{ exp.companyName }}</td>
+              <td>{{ exp.post }}</td>
+              <td>{{ exp.year }}</td>
+            </tr>
+          </table>
+        </div>
+        <!-- End 5th Row -->
+        <!-- Begin 6th Row -->
+        <div class="entry">
+          <h2>PROJECTS</h2>
+          <table>
+            <tr>
+              <th>Project Name</th>
+              <th>Area Worked On</th>
+              <th>Short Description</th>
+            </tr>
+            <tr *ngFor="let pro of data.projects">
+              <td>{{ pro.projectName }}</td>
+              <td>{{ pro.area }}</td>
+              <td>{{ pro.description }}</td>
+            </tr>
+          </table>
+        </div>
+        <!-- End 6th Row -->
+        <!-- Begin 7th Row -->
+        <div class="entry">
+          <h2>SKILLS</h2>
+          <div class="content">
+            <!-- <h3>Software Knowledge</h3> -->
+            <ul class="skills" *ngFor="let skill of data.skills">
+              <li>{{ skill.skillName }}</li>
+            </ul>
+          </div>
+        </div>
+        <!-- End 7th Row -->
       </div>
-    </mat-expansion-panel>
-    <mat-expansion-panel
-      (opened)="panelOpenEdu = true"
-      (closed)="panelOpenEdu = false"
-    >
-      <mat-expansion-panel-header>
-        <mat-panel-title *ngIf="!panelOpenEdu">
-          Education
-        </mat-panel-title>
-      </mat-expansion-panel-header>
-      <table>
-        <tr>
-          <th>College Name</th>
-          <th>Degree</th>
-          <th>Year Of Passout</th>
-        </tr>
-        <tr *ngFor="let edu of data.education">
-          <td>{{ edu.collegeName }}</td>
-          <td>{{ edu.degree }}</td>
-          <td>{{ edu.year }}</td>
-        </tr>
-      </table>
-    </mat-expansion-panel>
-    <mat-expansion-panel
-      (opened)="panelOpenCert = true"
-      (closed)="panelOpenCert = false"
-    >
-      <mat-expansion-panel-header>
-        <mat-panel-title *ngIf="!panelOpenCert">
-          Certification
-        </mat-panel-title>
-      </mat-expansion-panel-header>
-      <table>
-        <tr>
-          <th>Institute Name</th>
-          <th>Course</th>
-          <th>Acquired Year</th>
-        </tr>
-        <tr *ngFor="let cert of data.certification">
-          <td>{{ cert.instName }}</td>
-          <td>{{ cert.course }}</td>
-          <td>{{ cert.year }}</td>
-        </tr>
-      </table>
-    </mat-expansion-panel>
-    <mat-expansion-panel
-      (opened)="panelOpenExp = true"
-      (closed)="panelOpenExp = false"
-    >
-      <mat-expansion-panel-header>
-        <mat-panel-title *ngIf="!panelOpenExp">
-          Experience
-        </mat-panel-title>
-      </mat-expansion-panel-header>
-      <table>
-        <tr>
-          <th>Company Name</th>
-          <th>Position</th>
-          <th>Year Of Experience</th>
-        </tr>
-        <tr *ngFor="let exp of data.experience">
-          <td>{{ exp.companyName }}</td>
-          <td>{{ exp.post }}</td>
-          <td>{{ exp.year }}</td>
-        </tr>
-      </table>
-    </mat-expansion-panel>
-    <mat-expansion-panel
-      (opened)="panelOpenPro = true"
-      (closed)="panelOpenPro = false"
-    >
-      <mat-expansion-panel-header>
-        <mat-panel-title *ngIf="!panelOpenPro">
-          Projects
-        </mat-panel-title>
-      </mat-expansion-panel-header>
-      <table>
-        <tr>
-          <th>Project Name</th>
-          <th>Area Worked On</th>
-          <th>Short Description</th>
-        </tr>
-        <tr *ngFor="let pro of data.projects">
-          <td>{{ pro.projectName }}</td>
-          <td>{{ pro.area }}</td>
-          <td>{{ pro.description }}</td>
-        </tr>
-      </table>
-    </mat-expansion-panel>
-  </mat-accordion>
-</app-navigation>
+      <div class="clear"></div>
+      <div class="paper-bottom"></div>
+    </div>
+    <!-- End Paper -->
+  </div>
+</div>
+<!-- End Wrapper -->
