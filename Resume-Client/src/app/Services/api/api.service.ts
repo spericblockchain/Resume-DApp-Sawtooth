@@ -6,15 +6,15 @@ import { HttpClient } from '@angular/common/http'
 export class ApiService {
 
   constructor ( private http: HttpClient ) { }
-  getReceipt = async id => {
+  getReceipt = async (id) => {
     try {
       const ReceiptResponse: any = await this.http.get( '/receipts?id=' + id ).toPromise()
       return ReceiptResponse
     } catch ( error ) {
+      return error
     }
   }
-  getStateData = async stateAddress => {
-    // tslint:disable-next-line: no-shadowed-variable
+  getStateData = async (stateAddress) => {
     try {
       const StateResponse: any = await this.http.get( '/state/' + stateAddress ).toPromise()
       return atob( StateResponse.data )
@@ -35,11 +35,4 @@ export class ApiService {
     const res = await window.fetch( postBatchListURL, fetchOptions )
     return [ res, batchHeaderBytes ]
   }
-  // sendTransaction = async ( batchListBytes, batchHeaderBytes ) => {
-  //   const httpOptions = {
-  //     headers: new HttpHeaders( { 'Content-Type': 'application/octet-stream' } )
-  //   }
-  //   const res = await this.http.post<any>( '/batches', batchListBytes, httpOptions ).toPromise()
-  //   return [res, protobuf.BatchHeader.decode( batchHeaderBytes )]
-  // }
 }
