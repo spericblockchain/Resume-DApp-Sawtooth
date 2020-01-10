@@ -70,7 +70,7 @@ class Handler extends TransactionHandler {
 				return updateResume(context, address, Payload[1]);
 			}
 		} catch (err) {
-			throw new InternalError(err)
+			throw new InternalError(err);
 		}
 	}
 }
